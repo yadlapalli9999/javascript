@@ -1,0 +1,83 @@
+<html>
+    <header>
+
+    </header>
+    <body>
+        <table id="empId"  border = 1px>
+            <tbody>
+                <tr>
+                    <th>fname</th>
+                    <th>lname</th>
+                    <th>email</th>
+                    <th>phone</th>
+                    <th>age</th>
+                    <th>city</th>
+                    <th>state</th>
+                </tr>
+            </tbody>
+        </table>
+        <script>
+            var emp =[
+                {
+                    "fname":"Ganesh",
+                    "lname":"Ch",
+                    "email":"ganeshch@gmail.com",
+                    "phone":"9908333448",
+                    "age":"27",
+                    "city":"Guntur",
+                    "state":"Andhra Pradesh"
+                },
+                {
+                    "fname":"Nani",
+                    "lname":"Dogiparthi",
+                    "email":"nani@gmail.com",
+                    "phone":"8142727448",
+                    "age":"36",
+                    "city":"ongole",
+                    "state":"Andhra Pradesh"
+                },
+                {
+                    "fname":"Raviteja",
+                    "lname":"Dogiparthi",
+                    "email":"raviteja@gmail.com",
+                    "phone":"8142727558",
+                    "age":"45",
+                    "city":"Hyderabad",
+                    "state":"Telegana"
+                },
+            ]
+            for(i=0;i<emp.length;i++){
+               var emptr = document.createElement('tr');
+               var td1 = document.createElement('td');
+               var td2 = document.createElement('td');
+               var td3 = document.createElement('td');
+               var td4 = document.createElement('td');
+               var td5 = document.createElement('td');
+               var td6 = document.createElement('td');
+               var td7 = document.createElement('td');
+
+                td1.innerHTML = emp[i].fname;
+                td2.innerHTML = emp[i].lname;
+                td3.innerHTML = emp[i].email;
+                td4.innerHTML = emp[i].phone;
+                td5.innerHTML = emp[i].age;
+                td6.innerHTML = emp[i].city;
+                td7.innerHTML = emp[i].state;
+
+               emptr.appendChild(td1)
+               emptr.appendChild(td2)
+               emptr.appendChild(td3)
+               emptr.appendChild(td4)
+               emptr.appendChild(td5)
+               emptr.appendChild(td6)
+               emptr.appendChild(td7)
+               
+
+
+               document.getElementById('empId').appendChild(emptr) 
+            }
+
+        </script>
+    </body>
+</html>
+

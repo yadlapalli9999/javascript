@@ -1,0 +1,87 @@
+<html>
+    <head>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+            <form>
+                    <div class="form-group">
+                      <label for="fname">First Name</label>
+                      <input type="text" class="form-control" id="fname" aria-describedby="emailHelp" placeholder="First Name">
+                    </div>
+
+                    <div class="form-group">
+                            <label for="lname">Last Name</label>
+                            <input type="email" class="form-control" id="lname" aria-describedby="emailHelp" placeholder="Last Name">
+                    </div>
+
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="addUser()">Submit</button>
+            </form>        
+        <table class="table" id="empId">
+        <thead>
+          <tr>
+            <th scope="col">fname</th>
+            <th scope="col">lname</th>
+            <th scope="col">email</th>
+            <th scope="col">Handler</th>
+          </tr>
+        </thead>
+        <tbody>
+         
+        </tbody>
+      </table>
+        <script>
+            var users = [];
+           function addUser(){
+            var obj = {
+                fname: document.getElementById("fname").value,
+                lname: document.getElementById("lname").value,
+                email: document.getElementById("email").value
+            }
+            users.push(obj)
+            console.log(users)
+            clearDataDomForm(obj)
+            displayDataTable(users)
+           }
+
+           function clearDataDomForm(obj){
+               for(a in obj){
+                   document.getElementById(a).value = ""
+               } 
+           }
+
+           function displayDataTable(users){
+               for(i=0; i<users.length;i++){
+                   var tr = document.createElement("tr");
+                   for( a in users[i]){
+                       var td = document.createElement("td");
+                       td.innerHTML = users[i][a];
+                       tr.appendChild(td)
+                   }
+                   var tdEdit = document.createElement("td");
+                   var button = document.createElement("button");
+                   button.setAttribute('class','btn btn-warning')
+                   button.setAttribute('onclick', 'editUser('+i+')');
+                   button.innerHTML = 'Edit';
+                   tdEdit.appendChild(button);
+                   tr.appendChild(tdEdit);
+               }
+               document.getElementById("empId").appendChild(tr);
+           }
+
+           function editUser(i){
+            displayFormValues(users[i])
+           }
+
+           function displayFormValues(obj){
+               for(a in obj){
+                document.getElementById(a).value = obj[a]
+               }
+           }
+        </script>
+    </body>
+</html>
+

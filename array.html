@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var users = ["nani","rajesh","ravi","ganesh"];
+        users.push('Rama')// push method array of last value
+        users.unshift('amar')// unshift method aaray of first element
+        users.splice(2,0,"Govind")// 
+        users.pop()
+        users.shift()
+        users.splice(2,1)
+        users.sort()
+        users.reverse()
+        //users.slice(1,3)
+        console.log(users.slice(1,3))
+        for(i=0;i<users.length;i++){
+            document.write(users[i]+"<br>")
+        }
+    </script>
+</body>
+</html>

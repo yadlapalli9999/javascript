@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var person =  {
+        "fname": "Todd",
+        "lname": "Patterson",
+        "tel": "(710)697-7911",
+        "address": "8637 Ipsum Ct",
+        "city": "Beaumont",
+        "state": "AZ",
+        "zip": 64447
+    };
+        var person2 ={
+            fname:'ramarao',
+            lname:'yadlapalli'
+        }
+        person.fname = 'Ganesh';
+        person['lname'] = 'Nani';
+        //delete person2.fname;
+        console.log(person)
+        console.log(person2)
+        //document.write(person.fname+ " "+ person.lname)
+        for(a in person){
+            //console.log(person[a])
+            document.write(person[a]+"<br>")
+        }
+    </script>
+</body>
+</html>
