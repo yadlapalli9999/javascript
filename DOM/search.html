@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Search Feature</title>
+    <script src="data.js"></script>
+</head>
+<body>
+        <div class="form-group">
+                <label for="search">Search Item</label>
+                <input type="text" class="form-control" id="search" placeholder="Search Element" onkeyup="searchUser()">
+              </div>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">fname</th>
+            <th scope="col">lname</th>
+            <th scope="col">email</th>
+            <th scope="col">Handler</th>
+          </tr>
+        </thead>
+        <tbody id="empId">
+         
+        </tbody>
+      </table>
+      <script>
+          function displayDataTable(users){
+            users = JSON.parse(localStorage.getItem('users'))
+            console.log(users)
+            document.getElementById('empId').innerHTML = ""
+               for(i=0; i<users.length;i++){
+                   var tr = document.createElement("tr");
+                   for( a in users[i]){
+                       var td = document.createElement("td");
+                       td.innerHTML = users[i][a];
+                       tr.appendChild(td)
+                   }
+                   var tdEdit = document.createElement("td");
+                   var button = document.createElement("button");
+                   button.setAttribute('class','btn btn-warning')
+                   button.setAttribute('onclick', 'editUser('+i+')');
+                   //button.innerHTML = 'Edit';
+                   
+                   var anchor = document.createElement("a");
+                   anchor.innerHTML = "Edit";
+                   anchor.setAttribute("href","search-edit.html?="+i)
+                   anchor.setAttribute("target","_blank")
+                   button.appendChild(anchor)
+
+                   var tdDelete = document.createElement("td");
+                   var button2 = document.createElement("button");
+                   button2.setAttribute('class', 'btn btn-danger')
+                   button2.setAttribute('onclick', 'deleteUser('+i+')')
+                   button2.innerHTML = 'Delete'
+                  
+
+                   tdEdit.appendChild(button);
+                   tdDelete.appendChild(button2);
+                   tr.appendChild(tdEdit);
+                   tr.appendChild(tdDelete);
+                   document.getElementById("empId").appendChild(tr);
+               }
+              
+           }
+           displayDataTable(users)
+           
+           function searchUser(){
+               var searchusers = [];
+               var enteredText = document.getElementById('search').value.toLocaleLowerCase()
+               console.log(enteredText)
+               if(enteredText.length>3){
+                   for(i = 0; i<users.length;i++){
+                       for(a in users[i]){
+                           if(a != "zip" ){
+                              if(users[i][a].toLocaleLowerCase().indexOf(enteredText)>-1){
+                               console.log(users[i])
+                               searchusers.push(users[i])
+                              }
+                           }
+                       }
+                   }
+                   displayDataTable(searchusers)
+               }
+               else{
+                   displayDataTable(users)
+               }
+           }
+
+           function editUser(){
+               localStorage.setItem('users',JSON.stringify(users))
+            }
+      </script> 
+</body>
+</html>

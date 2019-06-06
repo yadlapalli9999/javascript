@@ -35,7 +35,13 @@
         </tbody>
       </table>
         <script>
-            var users = [];
+            users = JSON.parse(localStorage.getItem('users'))
+            if(users==null){
+              users = [];
+            }else{
+              displayDataTable(users)
+            }
+           
            function addUser(){
             var obj = {
                 fname: document.getElementById("fname").value,
@@ -46,6 +52,7 @@
             console.log(users)
             clearDataDomForm(obj)
             displayDataTable(users)
+            localStorage.setItem('users',JSON.stringify(users))
            }
 
            function clearDataDomForm(obj){
@@ -55,7 +62,7 @@
            }
 
            function displayDataTable(users){
-            console.log(users)
+        
             document.getElementById('empId').innerHTML = ""
                for(i=0; i<users.length;i++){
                    var tr = document.createElement("tr");
@@ -87,11 +94,15 @@
            function editUser(i){
              index = i;
             displayFormValues(users[i])
+            document.getElementById("fname").value= users[i].fname
+            document.getElementById("lname").value= users[i].lname
+            document.getElementById("email").value= users[i].email
+            //localStorage.setItem('users',JSON.stringify(users))
            }
 
            function displayFormValues(obj){
                for(a in obj){
-                document.getElementById(a).value = obj[a]
+                 
                }
            }
 
@@ -102,10 +113,13 @@
                 email: document.getElementById("email").value
              }
              console.log(updateObj)
-             
+             //to Get the Users from Local
+             users = JSON.parse(localStorage.getItem('users'))
+             //Storing Updated Users in user
             users[index] = updateObj;
             displayDataTable(users);
             clearDataDomForm(updateObj)
+            localStorage.setItem('users',JSON.stringify(users))
            }
 
            function deleteUser(i){

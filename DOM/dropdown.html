@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="data.js"></script>
+    <title>Dropdown</title>
+</head>
+<body>
+    <div class="form-group">
+        <label for="sel1">Select list:</label>
+        <select class="form-control" id="sel" onchange="showUsersdetails()">
+          
+        </select>
+      </div>
+      <div id="demo"></div>
+      <script>
+       for( var i=0;i<users.length;i++){
+        //    console.log(users[i])
+           var option = document.createElement('option')
+           option.innerHTML = users[i].fname
+           option.setAttribute('value',i)
+           document.getElementById('sel').appendChild(option)
+       }
+
+       function showUsersdetails(){
+           index = document.getElementById('sel').value;
+           console.log(users[index]);
+           var result = "";
+           for(a in users[index]){
+               result = result+users[index][a]+'<br>'
+           }
+           document.getElementById('demo').innerHTML = result
+       }
+       setInterval(function(){
+        showUsersdetails()
+        if(Number(index)+1<users.length){
+            document.getElementById('sel').value = Number(index)+1
+        }
+        else{
+            document.getElementById('sel').value = 0;
+        }
+       },2000)
+
+      
+      </script>
+</body>
+</html>

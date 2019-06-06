@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>search edit</title>
+</head>
+<body>
+        <form>
+                <div class="form-group">
+                  <label for="fname">First Name</label>
+                  <input type="text" class="form-control" id="fname" aria-describedby="emailHelp" placeholder="First Name">
+                </div>
+
+                <div class="form-group">
+                        <label for="lname">Last Name</label>
+                        <input type="email" class="form-control" id="lname" aria-describedby="emailHelp" placeholder="Last Name">
+                </div>
+
+               
+                <button type="button" class="btn btn-primary" onclick="updateUser()" id="update">Update</button>
+        </form>   
+        <script>
+            users = JSON.parse(localStorage.getItem('users'))
+            var addressStr = window.location.href;
+            var index = addressStr.substr(addressStr.indexOf("=")+1)
+            console.log(index)
+
+            var editObj = users[index]
+            document.getElementById('fname').value = editObj.fname
+            document.getElementById('lname').value = editObj.lname
+            function updateUser(){
+            users[index] = editObj;
+            users[index].fname = document.getElementById('fname').value
+            users[index].lname = document.getElementById('lname').value
+            localStorage.setItem('users', JSON.stringify(users))
+            window.location = "search.html"
+            }
+
+
+        </script>     
+</body>
+</html>
