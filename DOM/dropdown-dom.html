@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        #states li:hover{
+            width:150px;
+            background: gray;
+            color:red;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="states"></ul>
+    <ul id="details"></ul>
+    <script>
+        var cars = [
+            {
+                "statenames": "Maharashtra",
+                "showroom": [
+                    {
+                        "showroomname": "KBC_mh"
+                    },
+                    {
+                        "showroomname": "ABC_mh"
+                    },
+                    {
+                        "showroomname": "DEF_mh"
+                    }
+                ]
+            },
+            {
+                "statenames": "M.P",
+                "showroom": [
+                    {
+                        "showroomname": "GHI_mp",
+
+                    },
+                    {
+                        "showroomname": "JKL_mp"
+                    },
+                    {
+                        "showroomname": "DEF_mp"
+                    }
+                ]
+
+            },
+            {
+                "statenames": "U.P",
+                "showroom": [
+                    {
+                        "showroomname": "KBC_up"
+                    },
+                    {
+                        "showroomname": "ABC_up"
+                    },
+                    {
+                        "showroomname": "DEF_up"
+                    }
+                ]
+            },
+            {
+                "statenames": "A.P",
+                "showroom": [
+                    {
+                        "showroomname": "KBC_ap"
+                    },
+                    {
+                        "showroomname": "ABC_ap"
+                    },
+                    {
+                        "showroomname": "DEF_ap"
+                    }
+                ]
+            }
+
+
+        ]
+        for(i=0;i<cars.length;i++){
+            var li = document.createElement('li');
+            li.innerHTML = cars[i].statenames;
+            //li.setAttribute('onmouseover','getDetails('+i+')')
+            document.getElementById('states').appendChild(li)
+        }
+
+        // Adding a Event Handler with DOM Method
+        document.getElementById('states').onmouseover = function(event){
+            document.getElementById('details').innerHTML = ""
+            console.log(event)
+            for (i = 0; i < cars.length; i++) {
+                if (event.target.innerHTML == cars[i].statenames) {
+                    console.log(cars[i])
+
+                    var objdetails = cars[i]
+                    for (var j = 0; j < objdetails.showroom.length; j++) {
+                        var li1 = document.createElement('li')
+                        li1.innerHTML = objdetails.showroom[j].showroomname
+                        document.getElementById('details').appendChild(li1)
+                    }
+                }
+
+        }
+        }
+
+        // function getDetails(i){
+        //     document.getElementById('details').innerHTML = ""
+        //     var carObjects = cars[i]
+        //     for(j=0;j<carObjects.showroom.length;j++){
+        //         var li1 = document.createElement('li');
+        //         li1.innerHTML = carObjects.showroom[j].showroomname
+        //         document.getElementById('details').appendChild(li1)
+        //     }
+        // }
+        
+    </script>
+</body>
+
+</html>

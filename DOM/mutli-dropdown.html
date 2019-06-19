@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="form-group">
+        <label for="sel">Select State:</label>
+        <select class="form-control" id="sel" onchange="showstatedetails()">
+
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="sel">Select showroom:</label>
+        <select class="form-control" id="showroom">
+
+        </select>
+    </div>
+
+    <button id="submit" onclick="Alldata()">submit</button>
+    <div id="demo"></div>
+    <script>
+        var cars = [
+            {
+                "statenames": "Maharashtra",
+                "showroom": [
+                    {
+                        "showroomname": "KBC_mh"
+                    },
+                    {
+                        "showroomname": "ABC_mh"
+                    },
+                    {
+                        "showroomname": "DEF_mh"
+                    }
+                ]
+            },
+            {
+                "statenames": "M.P",
+                "showroom": [
+                    {
+                        "showroomname": "GHI_mp",
+
+                    },
+                    {
+                        "showroomname": "JKL_mp"
+                    },
+                    {
+                        "showroomname": "DEF_mp"
+                    }
+                ]
+
+            },
+            {
+                "statenames": "U.P",
+                "showroom": [
+                    {
+                        "showroomname": "KBC_up"
+                    },
+                    {
+                        "showroomname": "ABC_up"
+                    },
+                    {
+                        "showroomname": "DEF_up"
+                    }
+                ]
+            },
+            {
+                "statenames": "A.P",
+                "showroom": [
+                    {
+                        "showroomname": "KBC_ap"
+                    },
+                    {
+                        "showroomname": "ABC_ap"
+                    },
+                    {
+                        "showroomname": "DEF_ap"
+                    }
+                ]
+            }
+
+
+        ]
+        for (i = 0; i < cars.length; i++) {
+            var options = document.createElement('option');
+            options.innerHTML = cars[i].statenames;
+            options.setAttribute('value',i)
+            document.getElementById('sel').appendChild(options)
+        }
+        function showstatedetails(){
+            index = document.getElementById('sel').value
+            for(j=0;j<cars[index].showroom.length;j++){
+                var option = document.createElement('option');
+                option.innerHTML = cars[index].showroom[j].showroomname
+                option.setAttribute('value',j)
+                document.getElementById('showroom').appendChild(option)
+            }
+        }
+        function Alldata(){
+            var selectedobj = cars[document.getElementById('sel').value]
+            console.log(selectedobj)
+            var obj = {
+                statenames:selectedobj.statenames,
+                showroomname:selectedobj.showroom[document.getElementById('showroom').value].showroomname
+            }
+            document.getElementById('demo').innerHTML = obj.statenames+"<br>"+obj.showroomname
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="./data.js"></script>
+    <title>Document</title>
+</head>
+<body>
+        <!-- Create And Display 10 States Names. When we click on Any State name, that particular State details has to be appear. (Name, capital, Local Language, population some random images, few lines as description) -->
+        <div class="form-group">
+                <label for="search">Search Item</label>
+                <input type="text" class="form-control" id="search" placeholder="Search Element" onkeyup="searchUser()">
+              </div>
+        <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                  </tr>
+                </thead>
+                <tbody id="myTable">
+                </tbody>
+              </table>
+              <div id="demo"></div>
+    <script>
+      
+       function displayDataTable(data){
+        document.getElementById('myTable').innerHTML = ""
+        for(i = 0; i<data.length;i++){
+            
+          var tr = document.createElement('tr');
+          for(a in data[i]){
+              var td = document.createElement('td')
+              td.innerHTML = data[i][a]
+              tr.appendChild(td)
+              
+          }
+         
+          document.getElementById('myTable').appendChild(tr)
+        }
+    }
+    displayDataTable(data)
+    function searchUser(){
+        var serachData = []
+        var textData = document.getElementById('search').value.toLocaleLowerCase()
+        //console.log(textData)
+        if(textData.length>3){
+            for(j=0;j<data.length;j++){
+               for(a in data[j]){
+                if(data[j][a].toLocaleLowerCase().indexOf(textData)>-1){
+                    serachData.push(data[j])
+                console.log(serachData)
+                }
+               }
+               
+            }
+            displayDataTable(serachData)
+        }
+        else{
+            displayDataTable(data)
+        }
+    } 
+    //searchUser() 
+
+    </script>
+</body>
+</html>

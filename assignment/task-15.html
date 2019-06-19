@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="jumbotron">
+        <h1 class="display-4 " style="text-align: center" id="demoTimer"></h1>
+    </div>
+    <script>
+        const second = 1000,
+               minute = second * 60,
+               hour = minute * 60,
+               day = hour * 24;
+        
+          var countDown = new Date('Aug 20, 2019 00:00:00').getTime();
+          function countDownTimer() {
+              var now = new Date().getTime();
+              distance = countDown - now;
+              document.getElementById('demoTimer').innerHTML = Math.floor(distance / (day)) + "d:" +
+                                                               Math.floor((distance % day)/(hour)) + "h:" + 
+                                                               Math.floor((distance % hour)/(minute)) + "m:" + 
+                                                               Math.floor((distance % minute)/(second))+"s"
+          }
+
+        countDownTimer()
+        
+        setInterval(function(){
+            countDownTimer()
+        },500)
+    </script>
+</body>
+
+</html>

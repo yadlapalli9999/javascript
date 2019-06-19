@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+        <!-- Create And Display 10 States Names. When we click on Any State name, that particular State details has to be appear. (Name, capital, Local Language, population some random images, few lines as description) -->
+
+        <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                  </tr>
+                </thead>
+                <tbody id="myTable">
+                </tbody>
+              </table>
+              <div id="demo"></div>
+    <script>
+        var data = [
+            {
+                "name":"Andhra Pradesh",
+                "capital":"Guntur",
+                "language":"Telugu",
+                "image":"./andhra-map.jpg",
+                "decription":"Andhra Pradesh is one of the leading rice-growing states in the country and is a major producer of India's tobacco. The state's rivers—particularly the Godavari and the Krishna, but also the Penneru—account for its agricultural importance."
+            },
+            {
+                "name":"Telangana",
+                "capital":"Hyderabad",
+                "language":"Telugu",
+                "image":"./telangana.jpg",
+                "decription":"Telangana is a land locked state with Maharashtra, Karnataka, Chhattisgarh, and Andhra Pradesh as its border states. Hyderabad is known as City of Pearls. K.Chandrashekar Rao is the first and current Chief Minister of the state from the Telegana Rashtra Samithi(TRS)."
+            },
+            {
+                "name":"Tamil Nadu",
+                "capital":"Chennai",
+                "language":"Tamil",
+                "image":"./Tamilnadu.jpg",
+                "decription":"Its capital and largest city is Chennai (formerly known as Madras). Tamil Nadu lies in the southernmost part of the Indian subcontinent and is bordered by the union territory of Puducherry and the South Indian states of Kerala, Karnataka, and Andhra Pradesh."
+            },
+            {
+                "name":"Karnataka",
+                "capital":"Bengaluru",
+                "language":"Kannada",
+                "image":"./KarnatakamapL.jpg",
+                "decription":"It was formed on 1 November 1956, with the passage of the States Reorganisation Act. Originally known as the State of Mysore, it was renamed Karnataka in 1973. The state corresponds to the Carnatic region. The capital and largest city is Bangalore (Bengaluru)."
+            },
+            {
+                "name":"Kerala",
+                "capital":"Thiruvananthapuram",
+                "language":"Malayalam",
+                "image":"./Kerela.jpg",
+                "decription":"The land of God, Kerala is believed to be a gift of the Arabian Sea. The pride of Kerala are Gorgeous and Exotic Beaches, Breathtaking hill Stations, Enchanting waterfalls, Beautiful lagoons, Meandering rivers and Amazing natural scenarios. These colors are made Kerala as a land of beauty and paradise on earth."
+            },
+            {
+                "name":"Maharashtra",
+                "capital":"Mumbai",
+                "language":"Marathi",
+                "image":"./Maharashtra.jpeg",
+                "decription":"Maharashtra is a state in the western peninsular region of India occupying a substantial portion ... has over 112 million inhabitants and its capital, Mumbai, has a population around 18 million making it the most populous urban area in India."
+            },
+            {
+                "name":"Gujarat",
+                "capital":"Gandhinagar",
+                "language":"Gujarati",
+                "image":"./gujarat_map.jpg",
+                "decription":"The first capital of Gujarat was Ahmedabad; the capital was moved to Gandhinagar in 1970."
+            },
+            {
+                "name":"Punjab",
+                "capital":"Chandigarh",
+                "language":"Punjabi",
+                "image":"./Punjab.png",
+                "decription":"CHANDIGARH, India — Since Chandigarh is the shared capital city of both Punjab and Haryana, two farming states in northern India, many of the state government offices are located there. To replace Lahore, which became part of Pakistan during British Partition in 1947, the Indian Punjab required a new capital city"
+            },
+            {
+                "name":"Uttar Pradesh",
+                "capital":"Lucknow",
+                "language":"Hindi",
+                "image":"./uttarpradesh-district-new.gif",
+                "decription":"Uttar Pradesh is a state in northern India. With roughly 200 million inhabitants, it is the most .... Sher Shah and his son Islam Shah ruled Uttar Pradesh from their capital at Gwalior. After the death of Islam Shah Suri, ... In 1920, the capital of the province was shifted from Allahabad to Lucknow."
+            },
+            {
+                "name":"Rajasthan",
+                "capital":"Jaipur",
+                "language":"Hindi",
+                "image":"./rajstatemap.jpg",
+                "decription":"Rajasthani (Devanagari: राजस्थानी) refers to a group of Indo-Aryan languages spoken .... In India, Rajasthani is written in the Devanagari script, an abugida which is written from left to right. Earlier, the Mahajani script, or Muriya, was used ..."
+            },
+
+        ]
+       function displayDataTable(){
+        document.getElementById('myTable').innerHTML = ""
+        for(i = 0; i<data.length;i++){
+            
+          var tr = document.createElement('tr');
+          for(a in data[i]){
+              var td = document.createElement('td')
+              td.innerHTML = data[i][a]
+              tr.appendChild(td)
+              
+          }
+         
+          document.getElementById('myTable').appendChild(tr)
+        }
+    }
+    displayDataTable()
+        
+        var button = document.createElement('button');
+        button.setAttribute('class','btn btn-warning');
+        button.setAttribute('onclick','deletelastObject()');
+        button.innerHTML = 'deleteLastObject';
+        document.getElementById('demo').appendChild(button);
+
+        var button2 = document.createElement('button');
+        button2.setAttribute('class','btn btn-primary');
+        button2.setAttribute('onclick','deleteFirstObject()');
+        button2.innerHTML = 'deleteFirstObject';
+        document.getElementById('demo').appendChild(button2);
+
+        var button3 = document.createElement('button');
+        button3.setAttribute('class','btn btn-secondary');
+        button3.setAttribute('onclick','deleteSecondtObject()');
+        button3.innerHTML = 'deleteTableSecondObject';
+        document.getElementById('demo').appendChild(button3);
+
+        var button4 = document.createElement('button');
+        button4.setAttribute('class','btn btn-secondary');
+        button4.setAttribute('onclick','deleteAllOddtObjects()');
+        button4.innerHTML = 'deleteAllOddObject';
+        document.getElementById('demo').appendChild(button4);
+
+        var button5 = document.createElement('button');
+        button5.setAttribute('class','btn btn-secondary');
+        button5.setAttribute('onclick','deleteAllEventObjects()');
+        button5.innerHTML = 'deleteAllEvenObject';
+        document.getElementById('demo').appendChild(button5);
+
+
+        function deletelastObject(){
+            data.pop()
+            displayDataTable()
+           
+        }
+
+        function deleteFirstObject(){
+            data.shift();
+            displayDataTable()
+        }
+
+        function deleteSecondtObject(){
+            data.splice(2,2)
+            displayDataTable()
+        }
+
+        function deleteAllOddtObjects(){
+            for(j=0;j<data.length;j++){
+                if(j%2 == 0){
+                    data.splice(j,1)
+                    displayDataTable()
+                }
+               
+            }  
+        }
+        function deleteAllEventObjects(){
+            for(j=0;j<data.length;j++){
+                if(j%2 == 1){
+                    data.splice(j,1)
+                    displayDataTable()
+                }
+               
+            }  
+        }
+
+    </script>
+</body>
+</html>

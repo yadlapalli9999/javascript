@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>My Slider</title>
+</head>
+
+<body>
+   
+    <img id="pics" src="./rajstatemap.jpg" alt="Forms" width="300px" height="200px" /></img>
+  <button id="bnext" type="button" onclick="nextPic()">Next</input>
+    <button id="bprev" type="button" onclick="prevPic()">Previous</input>
+    <script>
+        var imageList = ['./Tamilnadu.jpg','./andhra-map.jpg','./Kerela.jpg','./Punjab.png']
+
+        var currentIndex = 0;
+var pic = document.getElementById("pics");
+
+function nextPic() {
+  pic.src = imageList[(currentIndex++) % imageList.length];
+}
+
+function prevPic() {
+  if (currentIndex == 0){
+    currentIndex = imageList.length - 1;
+    //pic.src = imageList[currentIndex];
+
+  }
+  else{
+    currentIndex = currentIndex - 1;
+    // pic.src = imageList[currentIndex];
+  }
+  pic.src = imageList[currentIndex];
+ 
+}
+    </script>
+</body>
+
+</html>

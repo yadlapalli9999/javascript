@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <label>First Name</label>
+    <input type="text" id="fname"><br>
+    <label>Last Name</label>
+    <input type="text" id="lname"><br>
+    <label>email</label>
+    <input type="email" id="email">
+    <button type="button" onclick="submit()">Submit</button>
+    <hr>
+    <table border= 1> 
+            <thead>
+                <tr>
+                        <td>FNAME</td>
+                        <td>LNAME</td>
+                        <td>EMAIL</td>
+                </tr>
+                
+            </thead>
+            <tbody id="MyTable">
+
+            </tbody>
+    </table>
+    <script>
+    function submit(){
+        var obj1={
+           fname:document.getElementById('fname').value,
+           lname:document.getElementById('lname').value,
+           email:document.getElementById('email').value
+           
+        }
+        console.log(obj1)
+        postData(obj1)
+        clear()
+    }
+function clear(){
+    document.getElementById('fname').value=''
+           document.getElementById('lname').value=""
+           document.getElementById('email').value=""
+}
+
+function postData(obj1){
+  var ajaxdata=new XMLHttpRequest()
+  ajaxdata.onreadystatechange=function(){
+      if(ajaxdata.status==201 && ajaxdata.readyState==4){
+          console.log(ajaxdata.response)
+          getlatestdata()
+      }
+  }
+  ajaxdata.open('POST',"http://localhost:3000/users")
+  ajaxdata.setRequestHeader('Content-Type', 'application/json');
+  ajaxdata.send(JSON.stringify(obj1))
+}
+function getlatestdata(){
+    var ajaxdata=new XMLHttpRequest()
+  ajaxdata.onreadystatechange=function(){
+      if(ajaxdata.status==200 && ajaxdata.readyState==4){
+          console.log(ajaxdata.response)
+          var data = JSON.parse(ajaxdata.response)
+          displayData(data)
+      }
+  }
+  ajaxdata.open('GET',"http://localhost:3000/users")
+  ajaxdata.send()
+}
+function displayData(data){
+    document.getElementById('MyTable').innerHTML = ""
+for(i=0;i<data.length;i++){
+    var tr=document.createElement('tr')
+    for(a in data[i]){
+    var td=document.createElement('td')
+    td.innerHTML=data[i][a];
+    tr.appendChild(td)
+    }
+    document.getElementById('MyTable').appendChild(tr)
+}                   
+}
+    </script>
+</body>
+</html>
