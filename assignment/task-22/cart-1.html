@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        td{
+            width:200px
+        }
+    </style>
+</head>
+<body>
+    <table class="table" border=1px>
+            <thead>
+                    <tr>
+                      <th scope="col">id</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Cost</th>
+                      <th scope="col">Image</th>
+                    </tr>
+            </thead>
+            <tbody id="myTable">
+
+            </tbody>
+
+    </table>
+    <div id="totalAmount" style="float: right;margin-right: 116px;"></div>
+    <script>
+    var item = JSON.parse(localStorage.getItem('item_key'))
+    // if(item==null){
+    //           item = [];
+    //         }else{
+    //           displayData(item)
+    //         }
+    function displayData(){
+        for(i=0;i<item.length;i++){
+        var tr = document.createElement('tr');
+        var td1 = document.createElement('td');
+        var td2 = document.createElement('td');
+        var td3 = document.createElement('td');
+        var td4 = document.createElement('td');
+        var td5 = document.createElement('td');
+        var td6 = document.createElement('td');
+
+        var  div = document.createElement('div')
+        var div1 =  document.createElement('div')
+        var div2 =  document.createElement('div')
+        var image =  document.createElement('img')
+        var button1 = document.createElement('button')
+        var text = document.createElement('input')
+        var button2 = document.createElement('button')
+        var div6 = document.createElement('div')
+
+        div.innerHTML = item[i].id
+        td1.appendChild(div)
+        div1.innerHTML = item[i].name
+        td2.appendChild(div1)
+        div2.innerHTML = item[i].cost
+        td3.appendChild(div2)
+        image.src = item[i].image
+        image.setAttribute('style','width:150px;height:100px')
+        td4.appendChild(image)
+
+        button1.setAttribute('onclick','incre('+i+')')
+        button1.innerHTML = '+'
+
+        text.setAttribute("type","text")
+        text.setAttribute('id',"inputValue-"+i)
+         
+        button2.setAttribute('onclick','decr('+i+')')
+        button2.innerHTML = '-'
+
+        div6.setAttribute('id','amount-'+i)
+        div6.setAttribute('onclick','amount()')
+        button3 = document.createElement('button')
+        button3.setAttribute('onclick', 'Delete('+i+')')
+        button3.innerHTML = 'delete'
+
+        td5.appendChild(button1);
+        td5.appendChild(text);
+        td5.appendChild(button2)
+        td6.appendChild(div6)
+        td6.appendChild(button3)
+        
+
+        tr.appendChild(td1)
+        tr.appendChild(td2)
+        tr.appendChild(td3)
+        tr.appendChild(td4)
+        tr.appendChild(td5)
+        tr.appendChild(td6)
+        
+        
+        document.getElementById('myTable').appendChild(tr)
+       
+    }
+    
+
+    }
+    displayData()
+   
+    var result = 0;
+    
+    function incre(index){
+        var increment = Number(document.getElementById('inputValue-'+index).value);
+        //console.log(increment)
+        //if(item[index])
+        increment = increment+1;
+        document.getElementById('inputValue-'+index).value = increment;
+        amount(increment,index)
+        result+= Number(item[index].cost)
+       console.log(result)
+       document.getElementById('totalAmount').innerHTML ="TotalAmount: "+ result;
+    }
+    
+    function decr(index){
+        
+        increment = Number(document.getElementById('inputValue-'+index).value);
+        increment = increment - 1;
+        if(increment<0){
+            alert("item should not be negative")
+        }
+        else{
+            document.getElementById('inputValue-'+index).value = increment;
+          amount(increment,index)
+          result-= Number(item[index].cost)
+       console.log(result)
+       document.getElementById('totalAmount').innerHTML ="TotalAmount: "+result;
+
+        }
+       
+    }
+
+    var res = 0;
+    //var total = 0
+    function amount(increment,index){
+        
+      //console.log(increment)
+      //console.log(item[index].cost)
+      res = (increment*(item[index].cost))
+    //   total+= Number(increment*(item[index].cost))
+    //   console.log(total)
+      document.getElementById('amount-'+index).innerHTML = (res)
+      //total(res,index)
+    }
+    
+   function Delete(user){
+    document.getElementById('myTable').innerHTML =""
+       alert("ok")
+    item.splice(user,1)
+    displayData(item)
+    localStorage.setItem("item_key1", JSON.stringify(item))
+    
+   }
+
+   
+
+    </script>
+</body>
+</html>

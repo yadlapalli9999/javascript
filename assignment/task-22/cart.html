@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo"></div>
+        <!-- <table id="demo"  border = 1px>
+                <tbody>
+                    <tr>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>type</th>
+                        <th>cost</th>
+                        <th>image</th>
+                        
+                    </tr>
+                </tbody>
+            </table> -->
+    <script>
+        var item = JSON.parse(localStorage.getItem('item_key'))
+        console.log(item)
+        for(i =0; i<item.length;i++){
+       // document.getElementById('demo').innerHTML =  '<table class="table"><tbody><tr><th scope="row">3</th><td>'+item[i].name+'</td><td>'+item[i].cost+'</td><td><img style="width:100px;height:100px" src='+item[i].image+'></td></tr></tbody></table>'
+       var div = document.createElement('div');
+       var div1 = document.createElement('div')
+       var div2 = document.createElement('div')
+       var div3 = document.createElement('div')
+       var div4 = document.createElement('div')
+
+       var image = document.createElement('img')
+       var name = document.createElement('span')
+       var cost = document.createElement('span');
+       var input = document.createElement('input')
+       var button = document.createElement('button')
+       var button1  = document.createElement('button')
+       button.setAttribute('class','btn btn-primary')
+       button.setAttribute('onclick','incre('+i+')')
+       button.setAttribute('id',"btn-box-"+i)
+       button.innerHTML = '+';
+       input.setAttribute('id','demoClass-'+i)
+       input.setAttribute('type',"text")
+       button1.setAttribute('class','btn btn-primary')
+       button1.setAttribute('onclick','decre()')
+       button1.innerHTML = '-';
+      div3.appendChild(button)
+      div3.appendChild(input)
+      div3.appendChild(button1)
+
+      div4.setAttribute('onclick',"amount()")
+      div4.setAttribute('id',"demoamount")
+
+       name = item[i].name
+       div1.append(name)
+       cost = item[i].cost
+       image.src = item[i].image
+     
+       image.setAttribute('style','width:200px;height:200px')
+       div1.setAttribute('style', 'display:inline-block;width:100px')
+       div2.setAttribute('style', "display:inline-block;width:100px")
+       div3.setAttribute('style', "display:inline-block;width:400px")
+       div4.setAttribute('style', "display:inline-block;width:400px")
+       
+
+       div2.append(cost)
+       
+       div.appendChild(div1)
+       div.appendChild(div2)
+       div.appendChild(image)
+       div.appendChild(div3)
+       div.appendChild(div4)
+       div.setAttribute('id',"box-"+i)
+
+       
+       document.getElementById('demo').appendChild(div)
+        }
+        // var increment = 0;
+        // function incre(index){
+            
+        //     //index = parseInt(index)
+            
+        //     // if(document.getElementById("box-"+index)){
+        //         //console.log(item[index])
+        //         increment = increment+1;
+        //    console.log(increment)
+        //    document.getElementById('demoClass-'+index).value = (increment)
+        //    amount(increment)
+        //    //document.getElementById('demoClass-'+index).value = ""
+        //    //}
+           
+           
+        // }
+        var increment = 0
+        function incre(index){
+          
+
+        }
+
+        function decre(){
+            
+            increment = increment-1;
+            document.getElementById('demoClass').value = (increment)
+            amount(increment)
+        }
+        
+        function amount(increment){
+            var res =0
+             
+            //console.log(increment)
+             res = (increment*cost)
+             document.getElementById('demoamount').innerHTML = res
+        }
+        amount()
+    </script>
+</body>
+</html>
